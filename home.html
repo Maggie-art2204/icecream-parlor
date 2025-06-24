@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>home</title>
+    <link rel="stylesheet" href="home.css">
+    <script>
+    // Function to get query parameters from the URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Function to handle logout
+    function logout() {
+        localStorage.setItem('loggedIn', 'false'); // Update login status
+        window.location.href = 'home.html?logout=success'; // Redirect with logout success parameter
+    }
+
+    // Check for login or logout status on page load
+    window.onload = function () {
+        const loginStatus = getQueryParam('login');
+        const logoutStatus = getQueryParam('logout');
+
+        if (loginStatus === 'success') {
+            alert('User logged in successfully!');
+            localStorage.setItem('loggedIn', 'true'); // Set login status
+        }
+
+        if (logoutStatus === 'success') {
+            alert('User logged out successfully!');
+        }
+    };
+   </script>
+   <script>
+    // Function to get query parameters from the URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Function to handle logout
+    function logout() {
+        localStorage.setItem('loggedIn', 'false'); // Update login status
+        window.location.href = 'home.html?logout=success'; // Redirect with logout success parameter
+    }
+
+    // Function to lock/unlock buttons based on login status
+    function updateButtonAccess() {
+        const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+        const buttonsToLock = document.querySelectorAll('.menu-bar ul li a:not(#loginButton)');
+
+        buttonsToLock.forEach(button => {
+            if (!isLoggedIn) {
+                button.style.pointerEvents = 'none'; // Disable clicks
+                button.style.opacity = '0.5'; // Make buttons look disabled
+            } else {
+                button.style.pointerEvents = 'auto'; // Enable clicks
+                button.style.opacity = '1'; // Make buttons look enabled
+            }
+        });
+    }
+
+    // Check for login or logout status on page load
+    window.onload = function () {
+        const loginStatus = getQueryParam('login');
+        const logoutStatus = getQueryParam('logout');
+
+        if (loginStatus === 'success') {
+            alert('User logged in successfully!');
+            localStorage.setItem('loggedIn', 'true'); // Set login status
+        }
+
+        if (logoutStatus === 'success') {
+            alert('User logged out successfully!');
+            localStorage.setItem('loggedIn', 'false'); // Set login status
+        }
+
+        updateButtonAccess(); // Update button access based on login status
+    };
+   </script> 
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logoL.png" alt="Logo">    
+    </div>  
+
+    <div class="menu-bar">   
+        <ul>
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Brands</a> <ul class="cat">
+                <li><a href="amul.html">Amul </a></li>
+                <li><a href="kwality.html"> Kwality Walls</a></li>
+                <li><a href="motherdairy.html">Mother Dairy</a></li>
+                <li><a href="havmor.html">Havmor</a></li>
+                <li><a href="vadilal.html">Vadilal </a></li>
+                <li><a href="creambell.html">Cream Bell  </a></li>    
+            </ul>
+            </li>
+            <li><a href="#">Category</a>
+                  <ul class="cat">
+                    <li><a href="cone.php">Cone</a></li>
+                    <li><a href="cups.php"> Cup</a></li>
+                    <li><a href="kulfi.php"> Kulfi</a></li>
+                    <li><a href="familyPacks.php">Family Pack</a></li>
+                    <li><a href="partypack.php">Party Pack</a></li>    
+                </ul> 
+            </li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li> 
+            <li><a href="login.html" id="loginButton">Login</a>
+              <ul class="cat">
+                <li><a href="#"  onclick="logout()">LogOut</a></li>
+              </ul>
+            </li>
+        </ul>
+    </div>  
+</header>
+    <div class="title">
+        <h3>"A Cone Full of Happiness,  <br> A Cup of Pure Joy - Come Taste the Sweetest Moments!"</h3>
+    </div> 
+
+<div class="slideshow-container">
+    <div class="slides-wrapper">
+        <div class="slides">
+          <img src="images/12.jpg" alt="Image 1">
+          <img src="images/3.jpg" alt="Image 2">
+          <img src="images/6.jpg" alt="Image 3">
+        </div>
+    </div>    
+    <button class="prev" onclick="prevSlide()">&#10094;</button>
+    <button class="next" onclick="nextSlide()">&#10095;</button>
+    <script src="slide.js"></script>
+</div>   
+
+  <div class="content">
+    <h1>Indulge in Sweet Bliss</h1>
+    <p>Step into a world of creamy delights and irresistible flavors at Frosty Delights!</p>
+<ul>
+    <li>Whether you're craving classic vanilla, adventurous salted caramel, or something uniquely exotic like mango chili, we've got a scoop for every mood.</li>
+    <li>Made with the finest ingredients and a sprinkle of love, our ice creams are crafted to bring joy to every bite.</li>
+    <li>Perfect for sunny afternoons, cozy evenings, or celebrating life' s sweetest moments.</li>
+    <li>We invite you to explore our menu and discover your new favorite treat.</li>
+    <li>Come for the ice cream, stay for the smiles! </li>
+</ul>
+  </div>
+
+
+
+
+<section class="flavours" id="flavours">
+    <h1 class="heading">BRANDS</h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="amul.jpg" alt="BungeeJumpingImg">
+            <h3>AMUL</h3>
+            <p> The Taste of India</p>
+            <a href="amul.html" class="btn">explore</a>
+        </div>
+
+        <div class="box">
+            <img src="kwality.jpg" alt="ZipLinesImg">
+            <h3>KWALITY WALLS</h3>
+            <p>Sweetening Moments, Spreading Smiles</p>
+            <a href="kwality.html" class="btn">explore</a>
+        </div>
+
+        <div class="box">
+            <img src="havmor.jpg" alt="CanoeingImg">
+            <h3>HAVMOR</h3>
+            <p>Pure Joy, Perfect Taste</p>
+            <a href="havmor.html" class="btn">explore</a>
+        </div>
+
+        <div class="box">
+            <img src="cream.jpg" alt="CanoeingImg">
+            <h3>CREAM BELL</h3>
+            <p>Fun in Every Bite</p>
+            <a href="creambell.html" class="btn">explore</a>
+        </div>
+
+        <div class="box">
+          <img src="mother.jpg" alt="CanoeingImg">
+          <h3>MOTHER DAIRY</h3>
+          <p>Pure Goodness, Every Day</p>
+          <a href="motherdairy.html" class="btn">explore</a>
+      </div>
+    </div>
+</section>
+
+
+<section class="section__container popular__container" id="menu">
+    <h2 class="section__header">Popular Ice-Cream</h2>
+    <div class="popular__grid">
+      <div class="popular__card">
+        <img src="images/popular-1.png" alt="popular" />
+        <div class="popular__card__content">
+          <h4>Mango Tango Sorbet</h4>
+          <h3>Rs.60</h3>
+        </div>
+      </div>
+      <div class="popular__card">
+        <img src="images/popular-2.png" alt="popular" />
+        <div class="popular__card__content">
+          <h4>Chocolate Fudge Delight</h4>
+          <h3>Rs.80</h3>
+        </div>
+      </div>
+      <div class="popular__card">
+        <img src="images/popular-3.png" alt="popular" />
+        <div class="popular__card__content">
+          <h4>Strawberry Swirl Bliss</h4>
+          <h3>Rs.70</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section__container discover__container" id="categories">
+    <h2 class="section__header">Most Selling Ice-Cream</h2>
+    <p class="section__description">
+      Discover our crowd favorites! These ice creams are loved by everyone and
+      have become the top picks for their irresistible flavors and creamy
+      textures.
+    </p>
+    <div class="discover__grid">
+      <div class="discover__card">
+        <img src="images/discover-1.jpg" alt="discover" />
+        <div class="discover__card__content">
+          <h4>Double Chocolate Crunch</h4>
+          <p class="section__description">
+            Dive into a chocolate lover's paradise with our Double Chocolate
+            Crunch.<br> This rich and creamy ice cream is made with premium cocoa
+            and blended with crunchy chocolate <br>chunks to deliver a perfect
+            balance of smoothness and texture.
+          </p>
+          <h3>
+            Rs.90 <span><s></s></span>
+          </h3>
+          <div class="discover__card__btn">
+          </div>
+        </div>
+      </div>
+      <div class="discover__card">
+        <img src="images/discover-2.jpg" position="left" alt="discover" />
+        <div class="discover__card__content">
+          <h4>Strawberry Cheesecake Bliss</h4>
+          <p class="section__description">
+            Experience the perfect harmony of fruity and creamy with our
+            Strawberry Cheesecake Bliss. <br>Every spoonful feels like enjoying a
+            slice of fresh strawberry cheesecake, making it an irresistible
+            dessert.
+          </p>
+          <h3>
+            Rs.120 <span><s></s></span>
+          </h3>
+          <div class="discover__card__btn">
+          </div>
+        </div>
+      </div>
+      <div class="discover__card">
+        <img src="images/discover-3.jpg" alt="discover" />
+        <div class="discover__card__content">
+          <h4>Classic Cookies and Cream</h4>
+          <p class="section__description">
+            Savor the timeless charm of our Classic Cookies and Cream ice
+            cream. <br>Made with velvety smooth vanilla ice cream, it is
+            generously packed with chunks of chocolate cookies to create a
+            delightful crunch in every bite.
+          </p>
+          <h3>
+            Rs.150 <span><s></s></span>
+          </h3>
+          <div class="discover__card__btn">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+<section class="about-us" id="about-us">
+    <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Welcome to Our Ice Cream World!</h3>
+                <p>
+                    We are passionate about creating the finest ice cream experiences for our customers. 
+                    With a rich history of crafting delicious flavors, we bring joy to every scoop. 
+                    Our mission is to deliver high-quality, handcrafted ice cream made from the freshest ingredients.
+                </p>
+                <p>
+                    Whether you're craving a classic cone or an exotic flavor, we've got something for everyone. 
+                    Come and explore our world of sweetness!
+                </p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+            <div class="about-image">
+                <img src="imgg.jpg" alt="About Us Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="footer">
+    <div class="box-container">
+        <div class="box1">
+            <h3>Quick Links</h3>
+            <a href="#home">Home</a>    
+            <a href="#">flavours</a>
+            <a href="admin.html">Admin</a>
+        </div>
+
+        <div class="box1">
+            <h3>Extra Links</h3>
+            <a href="contact.html">Ask Questions</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div class="box1">
+            <h3>Contact Info</h3>
+            <a href="tel:+919373610780"><i class="fas fa-phone"></i> +91 9373610780</a>
+            <a href="realomkard.15@gmail.com"><i class="fas fa-envelope"></i> realomkard.15@gmail.com</a>
+            <a href="#"><i class="fas fa-map"></i> chiplun, India - 415722</a>
+        </div>
+
+        <div class="box1">
+            <h3>Follow Us</h3>
+            <a href="https://www.facebook.com/omkardhuri"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/vhs.omkar_"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.linkedin.com/in/Omkar Dhuri/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/Maggies-art2204"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </div>
+    <div class="credit">Created by <span>Omkar Dhuri</span> | All rights reserved!</div>
+</section>
+
+<script>
+    // JavaScript for popular 
+    document.addEventListener("DOMContentLoaded", () => {
+      const popularSection = document.querySelector(".popular__container");
+  
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate"); // Add the animate class
+              observer.unobserve(entry.target); // Stop observing after animation
+            }
+          });
+        },
+        {
+          threshold: 0.5, // Trigger when 50% of the section is visible
+        }
+      );
+  
+      if (popularSection) {
+        observer.observe(popularSection); // Start observing the section
+      }
+    });
+  </script>
+
+
+<script>
+    // JavaScript for selling
+    document.addEventListener("DOMContentLoaded", () => {
+      const discoverSection = document.querySelector(".discover__container");
+  
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate"); // Add the animate class
+              observer.unobserve(entry.target); // Stop observing after animation
+            }
+          });
+        },
+        {
+          threshold: 0.5, // Trigger when 50% of the section is visible
+        }
+      );
+  
+      if (discoverSection) {
+        observer.observe(discoverSection); // Start observing the section
+      }
+    });
+  </script>
+</body>   
+</html>
+

@@ -1,0 +1,189 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  background-image: url(images/9.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  text-align: center;
+}
+
+/* Elegant "Amul" Text */
+.Amul {
+  font-size: 150px; /* Increased Size */
+  font-weight: bold;text-align: center;
+  background: linear-gradient(45deg, #ff0000, #ff9f43);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.3);
+  animation: amulFadeIn 2s ease-in-out, amulScale 5s infinite alternate ease-in-out;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+/* Subtle Fade-In for "Amul" */
+@keyframes amulFadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Soft Scaling for "Amul" */
+@keyframes amulScale {
+  from {
+      transform: scale(1);
+  }
+  to {
+      transform: scale(1.05);
+  }
+}
+
+/* Universal Section Styling */
+section {
+  text-align: center;
+  padding: 60px 0;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideUp 1s ease-out forwards;
+}
+
+/* Subtle Fade and Slide Up Animation */
+@keyframes fadeSlideUp {
+  from {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Stylish Section Headings */
+.heading {
+  font-size: 5rem; /* Slightly Larger */
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(90deg, #0a003f, #ff6f61);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInHeading 1.5s ease-out forwards 0.5s;
+}
+
+/* Smooth Fade-In for Headings */
+@keyframes fadeInHeading {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Box Container */
+.box-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+/* Individual Boxes */
+.box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  width: 280px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Image inside Box */
+.box img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  height: 300px;
+}
+
+/* Box Title */
+.box h3 {
+  font-size: 1.5rem;
+  margin-top: 15px;
+  color: white;
+}
+
+/* Box Description */
+.box p {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: white;
+}
+
+/* Order Button */
+.box .btn {
+  display: inline-block;
+  background-color: #ff9f43;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.box .btn:hover {
+  background-color: #333;
+}
+
+.price{
+  font-size: 25px;
+}
+
+.button {
+  display: inline-block;
+  background-color: #ff9f43;
+  color: white;
+  margin-bottom: 100px;
+  padding: 30px 50px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff7f00;
+  transform: translateY(-3px); /* Lift button on hover */
+}

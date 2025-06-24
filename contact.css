@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    height: 1000px;
+    background-image: url(images/5.jpg);
+    background-attachment: fixed;
+    background-size: cover;        
+    background-position: center;   
+              
+    
+}
+
+.h2{
+    font-size: 15px;
+}
+.contact-section {
+    padding: 50px 0;
+    background-color: transparent;
+    text-align: center;
+    animation: slideOut 1s ease-in-out;
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+  }
+
+
+.container {
+    width: 80%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+h2 {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    width: 45%;
+    text-align: left;
+    background-color:transparent;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+.info-box h3 {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.info-box p {
+    font-size: 18px;
+    color: light black;
+    margin: 10px 0;
+}
+
+.contact-form {
+    width: 45%;
+    text-align: left;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+.contact-form h3 {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.input-box {
+    margin-bottom: 20px;
+}
+
+.input-box input, .input-box textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-box textarea {
+    height: 150px;
+    resize: none;
+}
+
+.input-box button {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input-box button:hover {
+    background-color: #e55b00;
+}
+.go-back {
+    display: block;
+    margin: 30px auto; 
+    padding: 20px 40px; 
+    background-color:  #f77c00; 
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.go-back:hover {
+    background-color: #df350a;
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+    }
+
+    .info-box, .contact-form {
+        width: 100%;
+    }
+}

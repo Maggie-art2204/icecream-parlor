@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('images/adminbg1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 20px;
+}
+h1 {
+    text-align: center;
+    font-size: 4rem;
+    text-size-adjust: 200px;
+}
+table {
+    width: 80%;
+    margin-left: 150px;
+    background:transparent;
+    backdrop-filter: blur(10px);
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    text-align: center;
+    font-size: 1.5rem;
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
+}
+td {
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 3.8);
+}    
+img {
+    max-width: 100px;
+    height: auto;
+}

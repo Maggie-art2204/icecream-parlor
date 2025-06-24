@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>dashboard</h2>
+
+         <!-- Profile Section -->
+         <div class="profile">
+            <img src="admin.jpg" alt="Profile Picture" class="profile-pic">
+            <span class="username">Admin</span>
+        </div>
+         
+        <ul>
+
+            <!-- Users Section -->
+            <li>
+                <a href="#users">Users</a>
+                <ul>
+                    <li><a href="view_login.php">View Login Information</a></li>
+                    <li><a href="view_register.php">View Register Information</a></li>
+                    <li><a href="view_messages.php">View Messages</a></li>
+                </ul>
+            </li>
+
+            <!-- Cones Section -->
+            <li>
+                <a href="#cones">Cones</a>
+                <ul>
+                    <li><a href="admin_form.html">Manage Cones</a></li>
+                    <li><a href="view_cones.php">View Cones</a></li>
+                </ul>
+            </li>
+
+            <!-- Cups Section -->
+            <li>
+                <a href="#cups">Cups</a>
+                <ul>
+                    <li><a href="admin_form1.html">Manage Cups</a></li>
+                    <li><a href="view_cups.php">View Cups</a></li>
+                </ul>
+            </li>
+
+            <!-- Kulfis Section -->
+            <li>
+                <a href="#kulfis">Kulfis</a>
+                <ul>
+                    <li><a href="admin_form2.html">Manage Kulfis</a></li>
+                    <li><a href="view_kulfi.php">View Kulfis</a></li>
+                </ul>
+            </li>
+
+            <!-- Family Packs Section -->
+            <li>
+                <a href="#family-packs">Family Packs</a>
+                <ul>
+                    <li><a href="admin_form3.html">Manage Family Packs</a></li>
+                    <li><a href="view_family_packs.php">View Family Packs</a></li>
+                </ul>
+            </li>
+
+            <!-- Party Packs Section -->
+            <li>
+                <a href="#party-packs">Party Packs</a>
+                <ul>
+                    <li><a href="admin_form4.html">Manage Party Packs</a></li>
+                    <li><a href="view_party_packs.php">View Party Packs</a></li>
+                </ul>
+            </li>
+
+             <!-- order Section -->
+             <li>
+                <a href="#orders">Order Placed</a>
+                <ul>
+                    <li><a href="view_orders.php">View orders</a></li>
+                </ul>
+            </li>
+        </ul>
+        <button class="button" onclick="window.location.href='home.html'"> Log Out</button>  
+    </div>
+</div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Overview -->
+        <section class="dashboard-overview">
+            <h2>Dashboard Overview</h2>
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Total Users</h3>
+                    <p id="total-users">Loading...</p>
+                </div>
+                <div class="card">
+                    <h3>Total Orders</h3>
+                    <p id="total-orders">Loading...</p>
+                </div>
+                <div class="card">
+                    <h3>Revenue</h3>
+                    <p id="total-revenue">Loading...</p>
+                </div>
+                <div class="card">
+                    <h3>Messages</h3>
+                    <p id="total-messages">Loading...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="action-buttons">
+                <button onclick="window.location.href='admin_form.html'">Add New Cone</button>
+                <button onclick="window.location.href='admin_form1.html'">Add New Cup</button>
+                <button onclick="window.location.href='admin_form2.html'">Add New Kulfi</button>
+                <button onclick="window.location.href='admin_form3.html'">Add New Family Pack</button>
+                <button onclick="window.location.href='admin_form4.html'">Add New Party Pack</button>
+            </div>
+        </section>
+
+        <!-- Recent Activities -->
+        <section class="recent-activities">
+            <h2>Recent Activities</h2>
+            <ul id="recent-activities-list">
+                <li>Loading recent activities...</li>
+            </ul>
+        </section>
+        <!-- Statistics -->
+         <section class="statistics">
+            <h2>Statistics</h2>
+            <div class="charts">
+                <div class="chart">
+                    <h3>Sales Over Time</h3>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart">
+                    <h3>User Registrations</h3>
+                    <canvas id="usersChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const parentItems = document.querySelectorAll('.sidebar ul li');
+        parentItems.forEach(item => {
+            const link = item.querySelector('a');
+            const subMenu = item.querySelector('ul');
+    
+            if (subMenu) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    item.classList.toggle('active'); 
+                });
+            }
+        });
+    </script>
+
+
+<script>
+
+let salesChart, usersChart;
+
+function showError(elementId, message) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = message;
+        element.style.color = 'red';
+    }
+}
+
+async function fetchDashboardData() {
+    try {
+        
+        document.getElementById('total-users').textContent = 'Loading...';
+        document.getElementById('total-orders').textContent = 'Loading...';
+        document.getElementById('total-revenue').textContent = 'Loading...';
+        document.getElementById('total-messages').textContent = 'Loading...';
+        document.getElementById('recent-activities-list').innerHTML = '<li>Loading activities...</li>';
+
+        
+        const [statsRes, salesRes, usersRes] = await Promise.all([
+            axios.get('api/stats.php').catch(err => { throw new Error(`Stats API failed: ${err.message}`); }),
+            axios.get('api/sales.php').catch(err => { throw new Error(`Sales API failed: ${err.message}`); }),
+            axios.get('api/users.php').catch(err => { throw new Error(`Users API failed: ${err.message}`); })
+        ]);
+
+        
+        if (!statsRes.data || !salesRes.data || !usersRes.data) {
+            throw new Error('Invalid API response');
+        }
+
+        
+        document.getElementById('total-users').textContent = statsRes.data.totalUsers;
+        document.getElementById('total-orders').textContent = statsRes.data.totalOrders;
+        document.getElementById('total-revenue').textContent = `Rs.${statsRes.data.totalRevenue.toLocaleString()}`;
+        document.getElementById('total-messages').textContent = statsRes.data.totalMessages;
+
+        
+        const activitiesList = document.getElementById('recent-activities-list');
+        activitiesList.innerHTML = '';
+        if (statsRes.data.recentActivities && statsRes.data.recentActivities.length > 0) {
+            statsRes.data.recentActivities.forEach(activity => {
+                const li = document.createElement('li');
+                li.textContent = activity;
+                activitiesList.appendChild(li);
+            });
+        } else {
+            activitiesList.innerHTML = '<li>No recent activities</li>';
+        }
+
+        
+        updateCharts(salesRes.data, usersRes.data);
+        
+        
+        setTimeout(fetchDashboardData, 60000);
+        
+    } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+        
+        
+        showError('total-users', 'Error loading');
+        showError('total-orders', 'Error loading');
+        showError('total-revenue', 'Error loading');
+        showError('total-messages', 'Error loading');
+        document.getElementById('recent-activities-list').innerHTML = '<li>Error loading activities</li>';
+
+        
+        setTimeout(fetchDashboardData, 10000);
+    }
+}
+
+
+function updateCharts(salesData, usersData) {
+    
+    if (salesChart) salesChart.destroy();
+    if (usersChart) usersChart.destroy();
+
+    
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    salesChart = new Chart(salesCtx, {
+        type: 'line',
+        data: {
+            labels: salesData.labels || [],
+            datasets: [{
+                label: 'Sales (Rs)',
+                data: salesData.data || [],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                tension: 0.4,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true, position: 'top' },
+                title: { display: true, text: 'Monthly Sales Performance' }
+            },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    
+    const usersCtx = document.getElementById('usersChart').getContext('2d');
+    usersChart = new Chart(usersCtx, {
+        type: 'bar',
+        data: {
+            labels: usersData.labels || [],
+            datasets: [{
+                label: 'Users',
+                data: usersData.data || [],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true, position: 'top' },
+                title: { display: true, text: 'Monthly User Registrations' }
+            },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', fetchDashboardData);
+</script>
+</body>
+</html>

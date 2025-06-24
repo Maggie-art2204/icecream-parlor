@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin1.css">
+    <title>Manage Family Packs</title>
+</head>
+<body>
+    <h1>Manage Family Packs</h1>
+    <form action="manage_family_packs.php" method="POST" enctype="multipart/form-data">
+        <h2>Add Family Pack</h2>
+        <input type="text" name="name" placeholder="Family Pack Name" required><br><br>
+        <textarea name="description" placeholder="Description" required></textarea><br><br>
+        <input type="number" step="0.01" name="price" placeholder="Price" required><br><br>
+        <input type="file" name="image" accept="image/*" required><br><br>
+        <button type="submit" name="add">Add Family Pack</button>
+    </form>
+
+    <form action="manage_family_packs.php" method="POST" enctype="multipart/form-data">
+        <h2>Update Family Pack</h2>
+        <input type="number" name="id" placeholder="Family Pack ID" required><br><br>
+        <input type="text" name="name" placeholder="New Name"><br><br>
+        <textarea name="description" placeholder="New Description"></textarea><br><br>
+        <input type="number" step="0.01" name="price" placeholder="New Price"><br><br>
+        <input type="file" name="image" accept="image/*"><br><br>
+        <button type="submit" name="update">Update Family Pack</button>
+    </form>
+
+    <form action="manage_family_packs.php" method="POST">
+        <h2>Delete Family Pack</h2>
+        <input type="number" name="id" placeholder="Family Pack ID" required><br><br>
+        <button type="submit" name="delete">Delete Family Pack</button>
+    </form>
+</body>
+</html>

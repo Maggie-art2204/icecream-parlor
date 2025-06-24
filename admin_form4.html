@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin1.css">
+    <title>Manage Party Packs</title>
+</head>
+<body>
+    <h1>Manage Party Packs</h1>
+
+    
+    <form  action="manage_party_packs.php" method="post" enctype="multipart/form-data">
+        <h2>Add Party Pack</h2>
+        <input type="text" name="name" placeholder="Party Pack Name" required><br><br>
+        <textarea name="description" placeholder="Description" required></textarea><br><br>
+        <input type="number" step="0.01" name="price" placeholder="Price" required><br><br>
+        <input type="file" name="image" accept="image/*" required><br><br>
+        <button type="submit" name="add">Add Party Pack</button>
+    </form>
+
+    
+    <form method="post" enctype="multipart/form-data">
+        <h2>Update Party Pack</h2>
+        <input type="number" name="id" placeholder="Party Pack ID" required><br><br>
+        <input type="text" name="name" placeholder="New Name"><br><br>
+        <textarea name="description" placeholder="New Description"></textarea><br><br>
+        <input type="number" step="0.01" name="price" placeholder="New Price"><br><br>
+        <input type="file" name="image" accept="image/*"><br><br>
+        <button type="submit" name="update">Update Party Pack</button>
+    </form>
+
+    <form method="post">
+        <h2>Delete Party Pack</h2>
+        <input type="number" name="id" placeholder="Party Pack ID" required><br><br>
+        <button type="submit" name="delete">Delete Party Pack</button>
+    </form>
+</body>
+</html>
