@@ -25,6 +25,6 @@
             ?>
         </div>
     </section>
-    <button class="button" onclick="window.location.href='home.html'"> Go Back</button>    
+    <button class="button" onclick="window.location.href='index.html'"> Go Back</button>    
 </body>
 </html>
