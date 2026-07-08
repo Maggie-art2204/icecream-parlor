@@ -21,15 +21,14 @@
   header {
     background: linear-gradient(90deg, #ffcc00, #ff6f61);
     color: white;
-    justify-content: space-between;
-    margin-right: 0;  
+    justify-content: space-between;  
     position: relative;
   }
   .menu-bar ul {
     display: flex;
     font-style: bold;
     margin-top: 20px;
-    justify-content: center;
+    justify-content: flex-end;
   }
   
   .menu-bar ul li {
